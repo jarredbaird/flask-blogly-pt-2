@@ -46,5 +46,27 @@ endblock %} {% block content %}
       >
     </div>
   </div>
+  <div class="card" style="width: 18rem; margin-left: 10px">
+    <div class="card-header text-white bg-primary font-weight-bold h4">Posts</div>
+    <ul class="list-group list-group-flush">
+      {% for post in user.posts %}
+      <a class="list-group-item" href="/posts/{{post.post_id}}"
+        >{{post.title}}</a
+      >
+      {% endfor %}
+    </ul>
+    <div class="btn-group card-body" role="group" aria-label="options">
+      <form>
+        <button
+          formaction="/users/{{user.id}}/posts/new"
+          class="btn btn-primary"
+          formmethod="GET"
+        >
+          Add post
+        </button>
+      </form>
+    </div>
+  </div>
+  </div>
 </div>
 {% endblock %}

@@ -1,6 +1,6 @@
 """Seed file to make sample data for Users db."""
 
-from models import User, db
+from models import User, Post, db
 from app import app
 
 # Create all tables
@@ -16,11 +16,20 @@ two = User(first='Sonic', last="the Hedgehog", image_url="https://static.wikia.n
 three = User(first='Butt', last="Farts")
 four = User(first='Booty', last="Farts")
 
-# Add new objects to session, so they'll persist
+# Add posts
+meh = Post(title="I'm so lonely", content="Can anybody hear me?", user_id=1)
+meh_meh = Post(title="Now I'm happy", content="It just makes me wanna play the banjo!", user_id=1)
+
+# Add new users to session, so they'll persist
 db.session.add(one)
 db.session.add(two)
 db.session.add(three)
 db.session.add(four)
+db.session.commit()
+
+# Add new posts to the session
+db.session.add(meh)
+db.session.add(meh_meh)
 
 # Commit--otherwise, this never gets saved!
 db.session.commit()
